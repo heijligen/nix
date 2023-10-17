@@ -3,11 +3,11 @@
 ```nixos
 let
   # nixos-unstable
-  heijligen = import <heijligen> { };
+  heijligen = import <heijligen> { inherit pkgs; };
   
   # nixos-stable
   pkgsUnstable = import <nixos-unstable> { };
-  heijligen = import <heijligen> { pkgs = pkgsUnstable };
+  heijligen = import <heijligen> { pkgs = pkgsUnstable; };
 in
 {
   imports = [
