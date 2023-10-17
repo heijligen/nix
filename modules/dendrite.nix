@@ -107,6 +107,12 @@ in
       default = "none";
       description = lib.mdDoc "";
     };
+
+    openRegistration = lib.mkOption {
+      type = lib.types.bool;
+      default = false;
+      description = lib.mdDoc "";
+    };
   };
 
   config = lib.mkIf cfg.enable {
@@ -218,6 +224,8 @@ in
         ] ++ lib.optionals cfg.listen.socket.enable [
           "-unix-socket ${cfg.listen.socket.path}"
           "-unix-socket-permission ${cfg.listen.socket.mode}"
+        ] ++ lib.optionals cfg.openRegistration [
+          "-really-enable-open-registration"
         ]);
       };
     };
